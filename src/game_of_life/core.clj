@@ -11,3 +11,21 @@
   (let [grid (generate-grid size)]
     (for [row grid cell row]
       (if ( = (rand-int 7) 0) :alive :empty))))
+
+
+
+(defn swap-cell
+  [cell]
+  (if (= cell :empty)
+    :alive
+    :empty))
+
+(defn swap-row
+  [row]
+  (mapv swap-cell row))
+
+
+(defn update-grid
+  "Applies the rules of life"
+  [grid]
+  (mapv swap-row grid))
