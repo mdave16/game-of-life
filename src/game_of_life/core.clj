@@ -1,6 +1,6 @@
 (ns game-of-life.core)
 
-(defn foo
-  "I don't do a whole lot."
-  [x]
-  (println x "Hello, World!"))
+(defn generate-grid
+  "Generates a grid of size squared"
+  [size]
+  (repeat size (repeat size :empty)))

@@ -2,6 +2,11 @@
   (:require [clojure.test :refer :all]
             [game-of-life.core :refer :all]))
 
-(deftest a-test
-  (testing "FIXME, I fail."
-    (is (= 0 1))))
+(deftest generates-a-grid-test
+  (testing "generates a grid with 4x4 cells"
+    (is (= [[:empty :empty :empty :empty ]
+            [:empty :empty :empty :empty ]
+            [:empty :empty :empty :empty ]
+            [:empty :empty :empty :empty ]
+            ]
+            (generate-grid 4)))))
