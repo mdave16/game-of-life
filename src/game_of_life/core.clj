@@ -24,8 +24,34 @@
   [row]
   (mapv swap-cell row))
 
+(defn count-alive-neighbors
+  [neighbors]
+  (count (filter #(= :alive %) neighbors)))
+
+(defn update-cell
+  "Takes a cell and its neighbors, and returns the updated state of the cell"
+  [cell neighbors]
+  (if (> 2 (count-alive-neighbors neighbors))
+    :alive
+    :empty))
+
+(defn get-neighbors
+  "Gets the list of neighbors"
+  [board row-index col-index]
+  (remove nil?
+    [(nth (nth board (- row-index 1) []) (- col-index 1) nil)
+     (nth (nth board row-index []) (- col-index 1) nil)
+     (nth (nth board (+ row-index 1) []) (- col-index 1) nil)
+     (nth (nth board (- row-index 1) []) col-index nil)
+     (nth (nth board (+ row-index 1) []) col-index nil)
+     (nth (nth board (- row-index 1) []) (+ col-index 1) nil)
+     (nth (nth board row-index []) (+ col-index 1) nil)
+     (nth (nth board (+ row-index 1) []) (+ col-index 1) nil)]))
 
 (defn update-grid
   "Applies the rules of life"
   [grid]
-  (mapv swap-row grid))
+  (as-> grid $$
+    (mapv swap-row $$)
+    ())
+  )

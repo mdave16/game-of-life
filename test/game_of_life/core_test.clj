@@ -21,4 +21,11 @@
                         [:alive :alive]]
           modified-grid (update-grid initial-grid)]
       (is (= modified-grid [[:alive :alive]
+                            [:empty :empty]]))))
+
+  (testing "Make alive -> dead when there is < 2 neighbors"
+    (let [initial-grid [[:empty :empty]
+                        [:alive :empty]]
+          modified-grid (update-grid initial-grid)]
+      (is (= modified-grid [[:empty :empty]
                             [:empty :empty]])))))
